@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% block content %}
+    {% load crispy_forms_tags %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 card mb-4  mt-3 left  top">
+                <div class="card-body">
+                    <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
+                    <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+                    <p class="card-text ">{{ post.content | safe }}</p>
+                </div>
+            </div>
+
+            <div class="col-md-8 card mb-4  mt-3 ">
+                <div class="card-body">
+                    {% with comments.count as total_comments %}
+                        <h2>{{ total_comments }} comentários</h2>
+
+                        <p>
+                    {% endwith %} {% for comment in comments %}
+                        </p>
+
+                        <div class="comments" style="padding: 10px;">
+                            <p class="font-weight-bold">
+                                {{ comment.name }}
+                                <span class=" text-muted font-weight-normal">
+                                    {{ comment.created_on }}
+                                </span>
+                            </p>
+                            {{ comment.body | linebreaks }}
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-8 card mb-4  mt-3 ">
+                <div class="card-body">
+                    {% if new_comment %}
+                        <div class="alert alert-success" role="alert">
+                            Obrigado por participar, seu comentário está aguardando moderação.
+                        </div>
+                    {% else %}
+                        <h3>Deixe um comentário</h3>
+
+
+                        <form method="post" style="margin-top: 1.3em;"> {% csrf_token %}
+                                                    
+
+                            <div id="div_id_name" class="form-group"> 
+                                <label for="id_name" class=" requiredField">
+                                    Seu nome<span class="asteriskField">*</span> 
+                                </label> 
+                                <div class=""> 
+                                    <input type="text" name="name" maxlength="80" class="textinput textInput form-control" required="" id="id_name"> 
+                                </div> 
+                            </div> 
+                            
+                            <div id="div_id_email" class="form-group"> 
+                                <label for="id_email" class=" requiredField">
+                                    Email<span class="asteriskField">*</span> 
+                                </label> 
+                                <div class=""> 
+                                    <input type="email" name="email" maxlength="254" class="emailinput form-control" required="" id="id_email"> 
+                                </div> 
+                            </div> 
+                            
+                            <div id="div_id_body" class="form-group"> 
+                                <label for="id_body" class=" requiredField">
+                                    Sua mensagem<span class="asteriskField">*</span> 
+                                </label> 
+                                <div class=""> 
+                                    <textarea name="body" cols="40" rows="10" class="textarea form-control" required="" id="id_body"></textarea> 
+                                </div> 
+                            </div>
+
+                           
+                            <button type="submit" class="btn btn-primary  btn-lg">Concluir</button>
+                        </form>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
