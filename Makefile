@@ -1,14 +1,14 @@
 install:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 test:
-	python manage.py test
+	pytest
 
-makemigrations:
-	python manage.py makemigrations
+format:
+	black myproject
 
 migrate:
-	python manage.py migrate
+	python3 manage.py migrate
 
-run:
-	python manage.py runserver
+createsuperuser:
+	python3 manage.py createsuperuser
