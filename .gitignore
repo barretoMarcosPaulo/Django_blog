@@ -61,7 +61,6 @@ mediafiles/
 cache/
 # Sphinx documentation
 docs/_build/
-db.sqlite3
 # PyBuilder
 target/
 
