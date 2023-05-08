@@ -35,6 +35,10 @@ No diretório raiz execute:
 
 <img src="assets/feed.png" width="50%">
 
+## Github Actions
+### Configurei para este projeto uma simples pipeline, onde os testes unitários são executados e a dependencias instaladas
+<img src="assets/actions.png" width="50%">
+
 ### Para publicar uma postagem é necessário acessar o Django Admin com seu super usuário. Após fazer login você terá acesso a area administrativa onde poderá gerenciar as postagens do blog.
 
 <img src="assets/post.png" width="50%">
